@@ -42,7 +42,7 @@ public struct LinkResolver {
     }
     
     /// Helper method to extract query parameters from a URL
-    private  func extractQueryParameters(from url: URL) -> [String: String] {
+    private func extractQueryParameters(from url: URL) -> [String: String] {
         var queryParams: [String: String] = [:]
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         
@@ -55,7 +55,7 @@ public struct LinkResolver {
     }
     
     private func getCopiedData() -> String? {
-        if UserDefaults.firstLaunch {
+        if !UserDefaults.firstLaunch {
             switch options {
                 case .clipboard:
                     return getDataFromClipboard()
