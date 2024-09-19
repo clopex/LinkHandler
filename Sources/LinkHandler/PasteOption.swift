@@ -9,6 +9,6 @@ import Foundation
 
 public enum PasteOption {
     case clipboard
-    case cookies
+    case cookies(name: String)
     case script
 }

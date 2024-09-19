@@ -13,12 +13,8 @@ public class ClipboardManager {
 
     public init() {}
 
-    public func getTextFromClipboard() -> String? {
-        return UIPasteboard.general.string
-    }
-
-    public func setTextToClipboard(_ text: String) {
-        UIPasteboard.general.string = text
+    public var getTextFromClipboard: String? {
+        UIPasteboard.general.string
     }
 }
 #endif
@@ -30,7 +26,7 @@ extension UserDefaults {
         static let firstLaunch = "AppsFirstLaunch"
     }
     
-    class var firstLaunch: Bool? {
+    class var firstLaunch: Bool {
         get {
             return UserDefaults.standard.bool(forKey: Key.firstLaunch)
         }
