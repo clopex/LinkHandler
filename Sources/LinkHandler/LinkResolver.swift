@@ -16,7 +16,7 @@ public struct LinkResolver {
     }
     
     /// Asynchronously resolves the incoming link and extracts its components
-    public static func resolve(url: URL) async -> ResolvedLink? {
+    public func resolve(url: URL) async -> ResolvedLink? {
         
         if #available(macOS 10.15, *) {
             return await Task { () -> ResolvedLink? in
@@ -42,7 +42,7 @@ public struct LinkResolver {
     }
     
     /// Helper method to extract query parameters from a URL
-    private static func extractQueryParameters(from url: URL) -> [String: String] {
+    private  func extractQueryParameters(from url: URL) -> [String: String] {
         var queryParams: [String: String] = [:]
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         

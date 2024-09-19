@@ -9,9 +9,16 @@ import Foundation
 
 public struct LinkHandler {
     
+    private let option: PasteOption
+    
+    init(option: PasteOption = .clipboard) {
+        self.option = option
+    }
+    
     /// Asynchronously handles incoming links and resolves them
-    public static func handleIncomingLink(_ url: URL) async -> ResolvedLink? {
+    public func handleIncomingLink(_ url: URL) async -> ResolvedLink? {
         // Use the async resolver
-        return await LinkResolver.resolve(url: url)
+        let resolver = LinkResolver(option: option)
+        return await resolver.resolve(url: url)
     }
 }
