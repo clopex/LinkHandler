@@ -11,7 +11,7 @@ public struct LinkHandler {
     
     private let option: PasteOption
     
-    init(option: PasteOption = .clipboard) {
+    public init(option: PasteOption = .clipboard) {
         self.option = option
     }
     
