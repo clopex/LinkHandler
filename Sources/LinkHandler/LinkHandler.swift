@@ -1,5 +1,9 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+//
+//  LinkResolver.swift
+//
+//
+//  Created by Adis Mulabdic on 15. 9. 2024..
+//
 
 import Foundation
 

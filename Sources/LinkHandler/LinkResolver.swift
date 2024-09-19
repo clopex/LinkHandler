@@ -1,6 +1,6 @@
 //
 //  LinkResolver.swift
-//  
+//
 //
 //  Created by Adis Mulabdic on 15. 9. 2024..
 //
@@ -9,9 +9,15 @@ import Foundation
 
 public struct LinkResolver {
     
+    private let clipboardManager: ClipboardManager
+    
+    public init() {
+        clipboardManager = ClipboardManager()
+    }
+    
     /// Asynchronously resolves the incoming link and extracts its components
     public static func resolve(url: URL) async -> ResolvedLink? {
-
+        
         if #available(macOS 10.15, *) {
             return await Task { () -> ResolvedLink? in
                 let path = url.path // Extract the path of the URL
@@ -34,6 +40,12 @@ public struct LinkResolver {
     private static func extractQueryParameters(from url: URL) -> [String: String] {
         var queryParams: [String: String] = [:]
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        let linkResolver = LinkResolver()
+        if let link = linkResolver.pasteLinkFromClipboard() {
+            print("Pasted link: \(link)")
+        } else {
+            print("No link found in clipboard.")
+        }
         
         components?.queryItems?.forEach { queryItem in
             if let value = queryItem.value {
@@ -41,6 +53,10 @@ public struct LinkResolver {
             }
         }
         return queryParams
+    }
+    
+    public func pasteLinkFromClipboard() -> String? {
+        return clipboardManager.getTextFromClipboard()
     }
 }
 
